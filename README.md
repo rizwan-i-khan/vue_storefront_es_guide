@@ -20,3 +20,6 @@ POST
 "age" : 45,
 "experienceInYears" : 10
 }</pre><br/>
+
+<b>Getting Added Data <b><br/>
+  <pre>http://localhost:9200/vue_storefront_catalog/vendor/_search</pre><br/>
