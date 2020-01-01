@@ -25,3 +25,6 @@ Change in /vue-storefront-api/tsconfig.json as per <a href="https://github.com/f
   
 <b>Getting mapping of particular index of ES </b><br/>
   <pre>http://localhost:9200/vue_storefront_catalog/vendor/_mapping?pretty</pre><br/>
+
+<b>Deleting data from particular mapping type, we can not delete whole mapping as per ES guide. execute below with KIBANA </b><br/>
+  <pre>DELETE /index_name/mapping_type_name/id/</pre><br/>
