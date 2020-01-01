@@ -13,12 +13,11 @@ Change in /vue-storefront-api/tsconfig.json as per <a href="https://github.com/f
 }</pre><br/>
 
 <b>Inserting New data in Mapping.</b><br/>
-<pre>http://localhost:9200/company/employee/?_create
-POST
+<pre>POST /vue_storefront_catalog/vendor/1/
 {
-"name": "Andrew",
-"age" : 45,
-"experienceInYears" : 10
+"name": "Rizwan Khan",
+"age" : 25,
+"experienceInYears" : 3
 }</pre><br/>
 
 <b>Getting Added Data <b><br/>
