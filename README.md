@@ -6,8 +6,8 @@ Change in /vue-storefront-api/tsconfig.json as per <a href="https://github.com/f
 <pre>PUT /vue_storefront_catalog/_mapping/vendor
 {
   "properties": {
-    "vendor": {
-      "type": "keyword"
+    "v_id": {
+      "type": "long"
     }
   }
 }</pre><br/>
@@ -20,5 +20,8 @@ Change in /vue-storefront-api/tsconfig.json as per <a href="https://github.com/f
 "experienceInYears" : 3
 }</pre><br/>
 
-<b>Getting Added Data <b><br/>
+<b>Getting Added Data </b><br/>
   <pre>http://localhost:9200/vue_storefront_catalog/vendor/_search</pre><br/>
+  
+<b>Getting mapping of particular index of ES </b><br/>
+  <pre>http://localhost:9200/vue_storefront_catalog/vendor/_mapping?pretty</pre><br/>
