@@ -64,7 +64,17 @@ Change in /vue-storefront-api/tsconfig.json as per <a href="https://github.com/f
         vendor: (_, { filter }) => vendor(filter),
       },
     };
-    export default resolver; </pre>
+    export default resolver; 
+
+After you have performed above steps verify your data on http://your_ip_addr:8080/graphiql
+if everything goes well you can serahc your data by below query.
+
+{
+  my_custom_es_mapping {
+    hits
+  }
+}
+</pre>
     
 <b> To use ES data you can create new api endpoint in vuestorefront-api to call elasticsearch for getting custom entity data.</b>
   <pre>
@@ -101,4 +111,15 @@ axios.get(my_new_api_url,{
 }).catch(e => {
     console.error(e)
 })
+</pre>
+
+<b>Additional information</b>
+<pre>
+For checking schema of your new added mapping.
+http://localhost:9200/vue_storefront_catalog/vendor/_mapping?pretty
+
+For checking data of your new added mapping.
+http://localhost:9200/vue_storefront_catalog/vendor/_search?pretty
+
+In above links <b>vue_storefront_catalog</b> is our index name and <b>vendor</b> is our new entity/mapping name.
 </pre>
