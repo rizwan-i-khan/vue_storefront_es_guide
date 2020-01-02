@@ -66,6 +66,86 @@ Change in /vue-storefront-api/tsconfig.json as per <a href="https://github.com/f
     };
     export default resolver; 
 
+<b>Creating php script which will create new mapping/type in existing ES index, Also we are calling new api to get custom data and insert it into ES new index/mapping.</b>
+<b>####### START OF PHP SCRIPT #######</b>
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+#### Start Creating New Mapping in existsing index ####
+/*your mapping of elasticsearch schema*/
+$j_data = array("properties" => array('entity_id' => array('type' => 'long')));
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, 'http://localhost:9200/vue_storefront_catalog/_mapping/vendor');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($j_data));
+
+$headers = array();
+$headers[] = 'Content-Type: application/json';
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+$result = curl_exec($ch);
+if (curl_errno($ch)) {
+    echo '<br/>Error:' . curl_error($ch);
+}else{
+	echo '<b>New Mapping created successfully. </b><br/><br/>';
+	print_r($result);	
+}
+
+curl_close($ch);
+#### End Creating New Mapping in existsing index ####
+
+#### Start INSERTING New Data in new created mapping ####
+$custom_api_url = "Here your custom api url from where you are getting data to add in ES";
+$es_index = "vue_storefront_catalog"; //default index name of vuestorefront.
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $custom_api_url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+
+$headers = array();
+$headers[] = 'Content-Type: application/json';
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+$result = curl_exec($ch);
+if (curl_errno($ch)) {
+    echo 'Error:' . curl_error($ch);
+}
+$result = json_decode($result, true);
+curl_close($ch);
+
+if(isset($result['result']) && count($result['result']) > 0){
+	foreach ($result['result'] as $key => $vendor) {
+		$new_data = $vendor;
+		$index_id = $vendor['entity_id'];
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, 'http://localhost:9200/'.$es_index.'/vendor/'.$index_id.'/');
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($new_data));
+
+		$headers = array();
+		$headers[] = 'Content-Type: application/json';
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+		$result = curl_exec($ch);
+		if (curl_errno($ch)) {
+		    echo 'Error:' . curl_error($ch);
+		}else{
+			echo '<pre><b>Success response reiceved for Adding new data in vendor mapping. </b><br/><br/>';
+			print_r($result);
+		}
+	}
+}else{
+	die('No records found or some error encountered.');
+}
+curl_close($ch);
+#### END INSERTING New Data in new created mapping ####
+die('<br/><br/> EOF</pre>');
+<b>####### END OF PHP SCRIPT #######</b>
 After you have performed above steps verify your data on http://your_ip_addr:8080/graphiql
 if everything goes well you can serahc your data by below query.
 
