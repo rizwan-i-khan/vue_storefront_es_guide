@@ -90,8 +90,8 @@ $result = curl_exec($ch);
 if (curl_errno($ch)) {
     echo '<br/>Error:' . curl_error($ch);
 }else{
-	echo '<b>New Mapping created successfully. </b><br/><br/>';
-	print_r($result);	
+    echo '<b>New Mapping created successfully. </b><br/><br/>';
+    print_r($result);
 }
 
 curl_close($ch);
@@ -126,21 +126,19 @@ if(isset($result['result']) && count($result['result']) > 0){
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($new_data));
-
 		$headers = array();
 		$headers[] = 'Content-Type: application/json';
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-
 		$result = curl_exec($ch);
 		if (curl_errno($ch)) {
 		    echo 'Error:' . curl_error($ch);
 		}else{
-			echo '<pre><b>Success response reiceved for Adding new data in vendor mapping. </b><br/><br/>';
-			print_r($result);
+		    echo '<pre><b>Success response reiceved for Adding new data in vendor mapping. </b><br/><br/>';
+		    print_r($result);
 		}
 	}
 }else{
-	die('No records found or some error encountered.');
+    die('No records found or some error encountered.');
 }
 curl_close($ch);
 #### END INSERTING New Data in new created mapping ####
