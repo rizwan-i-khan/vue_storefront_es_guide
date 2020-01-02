@@ -78,10 +78,6 @@ if everything goes well you can serahc your data by below query.
 
 <b>Creating php script which will create new mapping/type in existing ES index, Also we are calling new api to get custom data and insert it into ES new index/mapping.</b>
 <pre>
-<?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 #### Start Creating New Mapping in existsing index ####
 /* your mapping of elasticsearch schema */
 $j_data = array("properties" => array('entity_id' => array('type' => 'long')));
