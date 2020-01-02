@@ -88,9 +88,9 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
 $result = curl_exec($ch);
 if (curl_errno($ch)) {
-    echo '<br/>Error:' . curl_error($ch);
+    echo 'Error:' . curl_error($ch);
 }else{
-    echo '<b>New Mapping created successfully. </b><br/><br/>';
+    echo '<b>New Mapping created successfully. </b>';
     print_r($result);
 }
 
@@ -133,7 +133,7 @@ if(isset($result['result']) && count($result['result']) > 0){
 		if (curl_errno($ch)) {
 		    echo 'Error:' . curl_error($ch);
 		}else{
-		    echo '<pre><b>Success response reiceved for Adding new data in vendor mapping. </b><br/><br/>';
+		    echo 'Success response reiceved for Adding new data in vendor mapping. ';
 		    print_r($result);
 		}
 	}
@@ -142,7 +142,7 @@ if(isset($result['result']) && count($result['result']) > 0){
 }
 curl_close($ch);
 #### END INSERTING New Data in new created mapping ####
-die('<br/><br/> EOF</pre>');
+die('EOF');
 <b>####### END OF PHP SCRIPT #######</b>
 After you have performed above steps verify your data on http://your_ip_addr:8080/graphiql
 if everything goes well you can serahc your data by below query.
