@@ -90,15 +90,15 @@ Change in /vue-storefront-api/tsconfig.json as per <a href="https://github.com/f
   </pre>
 
 <b> I have directly called the above vuestorefront-api using axios method of vue, please create a new module or component to call to follow best practice :) </b>
-    <pre>
-    axios.get(my_new_api_url,{
-        params: {
-            record_size: '20',
-            profileUrl: this.profile
-        }
-    }).then(response => {
-        console.log("results",response.data.result);
-    }).catch(e => {
-        console.error(e)
-    })
-    </pre>
+<pre>
+axios.get(my_new_api_url,{
+    params: {
+        record_size: '20',
+        profileUrl: this.profile
+    }
+}).then(response => {
+    console.log("results",response.data.result);
+}).catch(e => {
+    console.error(e)
+})
+</pre>
