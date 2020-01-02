@@ -66,29 +66,32 @@ Change in /vue-storefront-api/tsconfig.json as per <a href="https://github.com/f
     };
     export default resolver; </pre>
     
-<b> We can create new api endpoint in vuestorefront-api to call elasticsearch for getting custom entity data.</b>
-      <pre> api.get('/get_es_sellers', (req, res) => {
-            let size = 10;
-            let url = config.customapi.url + '/vue_storefront_catalog/vendor/_search';
-            let qs = req.query;
-            url = url+'?size=' + req.query.record_size;
-            request(
-                  {url,json: true},
-                (error, response, body) => {
-                    let apiResult;
-                    const errorResponse = error || body.error;
-                    if (errorResponse) {
-                        apiResult = { code: 500, result: errorResponse };
-                    } else {
-                        apiResult = { code: 200, result: body};
-                    }
-                    res.status(apiResult.code).json(apiResult);
-                  }
-              );
-          }) </pre>
+<b> To use ES data you can create new api endpoint in vuestorefront-api to call elasticsearch for getting custom entity data.</b>
+  <pre>
+  api.get('/get_es_sellers', (req, res) => {
+      let size = 10;
+      let url = config.customapi.url + '/vue_storefront_catalog/vendor/_search';
+      let qs = req.query;
+      url = url+'?size=' + req.query.record_size;
+      request(
+            {url,json: true},
+          (error, response, body) => {
+              let apiResult;
+              const errorResponse = error || body.error;
+              if (errorResponse) {
+                  apiResult = { code: 500, result: errorResponse };
+              } else {
+                  apiResult = { code: 200, result: body};
+              }
+              res.status(apiResult.code).json(apiResult);
+            }
+        );
+    })
+  </pre>
 
 <b> I have directly called the above vuestorefront-api using axios method of vue, please create a new module or component to call to follow best practice :) </b>
-    <pre>axios.get(my_new_api_url,{
+    <pre>
+    axios.get(my_new_api_url,{
         params: {
             record_size: '20',
             profileUrl: this.profile
@@ -97,4 +100,5 @@ Change in /vue-storefront-api/tsconfig.json as per <a href="https://github.com/f
         console.log("results",response.data.result);
     }).catch(e => {
         console.error(e)
-    })</pre>
+    })
+    </pre>
