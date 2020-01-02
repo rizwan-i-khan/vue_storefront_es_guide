@@ -31,4 +31,41 @@ Change in /vue-storefront-api/tsconfig.json as per <a href="https://github.com/f
 
  <b>Delete all index and all mapping + data in ES </b><br/>
   <pre>curl -X DELETE 'http://localhost:9200/_all'</pre><br/>
+  
+  
+ <b>Create new Entity/mapping for elasticsearch</b><br/>
+ <b>Step 1:</b><br/>
+  <pre>
+      <b>Create New file in vuestorefront-api/src/graphql/elasticsearch/vendor/schema.graphqls</b>
+      type Query {
+        vendor(filter: VendorInput): ESResponse
+      }
+      input VendorInput
+        @doc(description: "TaxRuleInput specifies the tax rules information to search") {
+        entity_id: Int @doc(description: "An ID that uniquely identifies the vendor")
+        is_seller: Int @doc(description: "Identifies if this is is seller or not.")
+      }
+  </pre>
+<b>Step 2:</b><br/>
+  <pre>
+      <b>Create New file in vuestorefront-api/src/graphql/elasticsearch/vendor/resolver.js</b>
+      import config from 'config';
+      import client from '../client';
+      import { buildQuery } from '../queryBuilder';
 
+      async function vendor(filter) {
+        let query = buildQuery({ filter, pageSize: 150, type: 'vendor' });
+        const response = await client.search({
+          index: config.elasticsearch.indices[0],
+          type: config.elasticsearch.indexTypes[6],
+          body: query,
+        });
+        return response;
+      }
+      const resolver = {
+        Query: {
+          vendor: (_, { filter }) => vendor(filter),
+        },
+      };
+      export default resolver;
+  </pre>
