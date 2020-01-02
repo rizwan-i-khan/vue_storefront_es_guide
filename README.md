@@ -144,9 +144,9 @@ curl_close($ch);
 #### END INSERTING New Data in new created mapping ####
 die('EOF');
 <b>####### END OF PHP SCRIPT #######</b>
+
 After you have performed above steps verify your data on http://your_ip_addr:8080/graphiql
 if everything goes well you can serahc your data by below query.
-
 {
   my_custom_es_mapping {
     hits
