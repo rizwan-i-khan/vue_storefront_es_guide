@@ -68,13 +68,13 @@ Change in /vue-storefront-api/tsconfig.json as per <a href="https://github.com/f
     export default resolver; 
 
 <b>Creating php script which will create new mapping/type in existing ES index, Also we are calling new api to get custom data and insert it into ES new index/mapping.</b>
-<b>####### START OF PHP SCRIPT #######</b>
+<b>####### START OF PHP SCRIPTT #######</b>
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 #### Start Creating New Mapping in existsing index ####
-/*your mapping of elasticsearch schema*/
+/* your mapping of elasticsearch schema */
 $j_data = array("properties" => array('entity_id' => array('type' => 'long')));
 
 $ch = curl_init();
