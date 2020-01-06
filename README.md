@@ -34,7 +34,7 @@ Change in /vue-storefront-api/tsconfig.json as per <a href="https://github.com/f
   <pre>curl -X DELETE 'http://localhost:9200/_all'</pre><br/>
  
  
- <h2>1Register new Entity/mapping for elasticsearch</h2><br/>
+ <h2>1: Register new Entity/mapping for elasticsearch</h2><br/>
 <b> In <i>vue-storefront/core/lib/search/adapter/api/searchAdapter.ts</i> Register new entity of yours.</b><br>
 <pre>
 this.registerEntityType('vendor', {
@@ -58,7 +58,7 @@ quickSearchByQuery({ entityType: 'vendor', size: 50, start: 0, offline: true}).t
 })
 </pre>
   
- <h2>Create new Entity/mapping for elasticsearch</h2><br/>
+ <h2>2: Create new Entity/mapping for elasticsearch</h2><br/>
  <b>Step 1:</b><br/>
   <pre><b>Create New file in vuestorefront-api/src/graphql/elasticsearch/vendor/schema.graphqls</b>
     type Query {
