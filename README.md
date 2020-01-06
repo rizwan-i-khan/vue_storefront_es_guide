@@ -49,6 +49,8 @@ this.registerEntityType('vendor', {
 
 <b>Get Data using quickSearchByQuery() in your component </b><br/>
 <pre>
+import { quickSearchByQuery } from '@vue-storefront/core/lib/search'
+
 let self = this
 quickSearchByQuery({ entityType: 'vendor', size: 50, start: 0, offline: true}).then(function (resp) {
   console.log('resp ',resp)
