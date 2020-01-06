@@ -34,16 +34,17 @@ Change in /vue-storefront-api/tsconfig.json as per <a href="https://github.com/f
   <pre>curl -X DELETE 'http://localhost:9200/_all'</pre><br/>
  
  
- <h2>Register new Entity/mapping for elasticsearch</h2><br/>
-<b> In <i>vue-storefront/core/lib/search/adapter/api/searchAdapter.ts</i> Register new entity of yours.<b><br>
-<pre>this.registerEntityType('vendor', {
+ <h2>1Register new Entity/mapping for elasticsearch</h2><br/>
+<b> In <i>vue-storefront/core/lib/search/adapter/api/searchAdapter.ts</i> Register new entity of yours.</b><br>
+<pre>
+this.registerEntityType('vendor', {
       queryProcessor: (query) => {
         return query
       },
       resultPorcessor: (resp, start, size) => {
         return this.handleResult(resp, 'vendor', start, size)
       }
-    })
+})
 </pre><br/>
 
 <b>Get Data using quickSearchByQuery() in your component </b><br/>
