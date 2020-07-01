@@ -1,7 +1,7 @@
 # Notes & handbook for vuestorefront with Elasticsearch
 Error while yarn dev in vuestorefron-api <br/>
 Change in /vue-storefront-api/tsconfig.json as per <a href="https://github.com/firebase/firebase-tools/issues/749#issuecomment-429598030">this</a> <br/>
-or `yarn add merge-graphql-schemas@1.5.8`
+or `yarn add merge-graphql-schemas@1.5.8` issue <a href="https://github.com/DivanteLtd/vue-storefront/issues/4280">4280</a>
 <br/><br/>
 
 <a href="#create-new-entitymapping-for-elasticsearch">Create New index/mapping and adding & getting data from Elasticsearch</a>
